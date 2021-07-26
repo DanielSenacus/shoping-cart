@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+.nav {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "Zen Tokyo Zoo", cursive;
+
+  .logo {
+    width: 80px;
+  }
+
+  &_menu {
+    display: flex;
+
+    width: 35rem;
+  }
+
+  &_logo {
+    width: 80px;
+    margin-left: 3rem;
+    margin-top: 1rem;
+  }
+
+  &_list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &_item {
+  }
+}
+
+.item_link {
+  &:hover {
+    color: lightblue;
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 30px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  &_clicked {
+    color: lightblue;
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 30px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+}
+
+main {
+  width: 100vw;
+  padding: 4rem;
+  height: calc(100vh - 4rem);
+  display: grid;
+  gap: 2rem;
+  grid-auto-rows: 30rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+section {
+  width: 100vw;
+  padding: 4rem;
+  height: calc(100vh - 4rem);
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
