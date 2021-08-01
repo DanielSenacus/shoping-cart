@@ -24,7 +24,7 @@ const connection = mysql.createConnection({
 
 // Route
 servidor.get('/', (req, res) => {
-    res.send('Bienvenido negrito');
+    res.send('Bienvenido');
 });
 
 // get products
@@ -36,7 +36,20 @@ servidor.get('/products', (req, res) => {
         if (result.length > 0) {
             res.json(result);
         } else {
-            res.send('no hay productos oyo mijo');
+            res.send('no hay productos');
+        }
+    })
+});
+;
+servidor.get('/stock', (req, res) => {
+    const sql = 'SELECT * FROM product JOIN inventario WHERE product.id = inventario.product_id';
+
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('no hay st');
         }
     })
 });
@@ -47,7 +60,7 @@ servidor.post('/add', (req, res) => {
 
 // update invetory
 servidor.put('/update/:id', (req, res) => {
-    res.send('update stocl papi')
+    res.send('update stock')
 });
 
 servidor.delete('/delete/:id', (req, res) => {
