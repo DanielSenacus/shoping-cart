@@ -100,31 +100,12 @@
           height: 5rem;
           font-size: 1rem;
 
-          input {
-            width: 40px;
-            height: 30px;
+          label {
+            padding: 0.5rem;
             margin-left: 1rem;
             margin-right: 1rem;
             border-radius: 10px;
-          }
-
-          .button {
-            &_add {
-              background-color: greenyellow;
-              width: 40px;
-              height: 40px;
-              color: rgb(0, 0, 0);
-              border-radius: 10px;
-              font-size: 2rem;
-            }
-            &_remove {
-              background-color: rgb(201, 23, 23);
-              color: white;
-              width: 40px;
-              height: 40px;
-              border-radius: 10px;
-              font-size: 2rem;
-            }
+            font-size: 1.5rem;
           }
         }
         .done {

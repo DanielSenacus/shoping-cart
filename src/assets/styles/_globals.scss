@@ -12,7 +12,7 @@ html {
   overflow-x: hidden;
 }
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: $main_font;
 }
 
 .nav {
@@ -68,6 +68,25 @@ body {
   }
 }
 
+.button {
+  &_add {
+    background-color: greenyellow;
+    width: 40px;
+    height: 40px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    font-size: 2rem;
+  }
+  &_remove {
+    background-color: rgb(201, 23, 23);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 2rem;
+  }
+}
+
 main {
   width: 100vw;
   padding: 4rem;
@@ -83,10 +102,94 @@ section {
   padding: 4rem;
   height: calc(100vh - 4rem);
 }
-
 .banner {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.cart_section {
+  display: flex;
+  justify-content: space-around;
+
+  .cartItem {
+    width: 700px;
+    height: 250px;
+    background: transparent;
+    margin: auto;
+    border: 4px solid #333;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow 0.5s, transform 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &:hover {
+      transform: scale(1);
+      box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40%;
+      img {
+        width: 80px;
+      }
+    }
+    .buttons {
+      display: flex;
+      label {
+        padding: 0.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: 10px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .prices {
+      margin-left: 1rem;
+    }
+  }
+
+  .total {
+    width: 350px;
+    height: 350px;
+    background: transparent;
+    margin: auto;
+    border: 4px solid #333;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .total_results {
+      display: flex;
+      align-self: flex-start;
+      margin-left: 1rem;
+      h4 {
+        margin-left: 1rem;
+      }
+    }
+    button {
+      width: 300px;
+      height: 50px;
+      font-family: $main_font;
+      background-color: $first-color;
+      color: white;
+      border: 3px solid black;
+    }
+  }
 }

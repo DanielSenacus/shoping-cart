@@ -18,13 +18,37 @@ import Sales from './pages/Sales';
 function App() {
 
   const [data, setData] = React.useState(null);
+
   const [cartItems, setCartItems] = React.useState([]);
 
-  const onAdd = (product) => {
-    const exist
+
+  const addProduct = (product) => {
+    const currentProduct = cartItems.find(item => item.id === product.id);
+    if (currentProduct) {
+      setCartItems(
+        cartItems.map((item) => item.id === product.id ? { ...currentProduct, cantidad: currentProduct.cantidad + 1 } : item)
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, cantidad: 1 }])
+    }
+    console.log(cartItems);
+
   }
 
-  const getApi = () => {
+  const removeProduct = (product) => {
+    const currentProduct = cartItems.find(item => item.id === product.id);
+    if (currentProduct.cantidad === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((item) => item.id === product.id ? { ...currentProduct, cantidad: currentProduct.cantidad - 1 } : item)
+
+      )
+    }
+  };
+
+
+  const getApi = async () => {
     const request = new XMLHttpRequest();
     request.open('get', 'http://localhost:5000/products', true);
 
@@ -42,6 +66,8 @@ function App() {
     request.send();
   };
 
+
+
   React.useEffect(() => {
     getApi();
   }, [])
@@ -51,10 +77,10 @@ function App() {
         <Navbar></Navbar>
         <Switch>
           <Route exact path="/">
-            <Home data={data}></Home>
+            <Home removeProduct={removeProduct} addProduct={addProduct} data={data}></Home>
           </Route>
           <Route path="/cart">
-            <Cart cartItems={cartItems}></Cart>
+            <Cart removeProduct={removeProduct} addProduct={addProduct} cartItems={cartItems}></Cart>
           </Route>
           <Route path="/inventory">
             <Inventory></Inventory>
