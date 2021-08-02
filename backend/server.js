@@ -33,7 +33,20 @@ servidor.get('/', (req, res) => {
 
 // get products
 servidor.get('/products', (req, res) => {
-    const sql = 'SELECT * FROM productos NATURAL JOIN stock;';
+    const sql = 'SELECT * FROM productos NATURAL JOIN stock LIMIT 3;';
+
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('no hay productos');
+        }
+    })
+});
+
+servidor.get('/products/2', (req, res) => {
+    const sql = 'SELECT * FROM productos NATURAL JOIN stock LIMIT 3,6;';
 
     connection.query(sql, (err, result) => {
         if (err) throw err;
