@@ -12,6 +12,9 @@ const Home = ({ data, addProduct, removeProduct }) => {
                         <Card key={product_id} removeProduct={removeProduct} addProduct={addProduct} product={product} />
                     );
                 })}
+                <button className="more_res">1</button>
+                <button className="more_res">2</button>
+
             </main>
         )
     } else

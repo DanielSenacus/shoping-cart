@@ -71,7 +71,7 @@ function App() {
 
   const getApi = async () => {
     const request = new XMLHttpRequest();
-    request.open('get', 'http://localhost:5000/products', true);
+    request.open('get', 'http://localhost:5000/products/2', true);
 
 
     request.onerror = function (err) {
