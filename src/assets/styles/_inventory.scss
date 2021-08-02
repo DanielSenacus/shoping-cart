@@ -1,0 +1,65 @@
+.inventory_section {
+  width: 100vw;
+  padding: 4rem;
+  height: calc(100vh - 4rem);
+  display: grid;
+  gap: 2rem;
+  grid-auto-rows: 30rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+.stock_card {
+  .content {
+    position: absolute;
+    width: 18.75rem;
+    height: 25rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+    transition: transform 1s;
+    transform-style: preserve-3d;
+
+    .front {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #ffc93c;
+      line-height: 300px;
+      color: #03446a;
+      text-align: center;
+      font-size: 60px;
+      border-radius: 5px;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.stock_card:hover .content {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  line-height: 300px;
+  color: #03446a;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.back {
+  background: #03446a;
+  color: white;
+  transform: rotateY(180deg);
+}

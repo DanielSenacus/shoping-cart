@@ -1,0 +1,151 @@
+$gray: #2c2c2c;
+$ltgray: lighten($gray, 20%);
+$green: #229f58;
+$ltgreen: lighten($green, 15%);
+$billwidth: 5.75em;
+$billheight: 2.5em;
+$fontsize: 3.33em;
+$animlength: 1s;
+
+small {
+  font-size: 16px;
+}
+
+body {
+  @media (min-width: 30em) {
+    font-size: 50%;
+  }
+  @media (min-width: 40em) {
+    font-size: 70%;
+  }
+  @media (min-width: 60em) {
+    font-size: 90%;
+  }
+  @media (min-width: 80em) {
+    font-size: 120%;
+  }
+  @media (min-width: 100em) {
+    font-size: 150%;
+  }
+}
+
+%circle {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: $ltgreen;
+  border: 0.15em solid $ltgreen;
+  border-radius: 100%;
+}
+
+.billete {
+  animation: shred $animlength infinite;
+  position: absolute;
+  z-index: 1;
+  left: -$billwidth * 2;
+  top: 50%;
+  width: $billwidth;
+  height: $billheight;
+  margin-top: -$billheight / 2;
+  background-color: $green;
+  background-image: linear-gradient(
+    157deg,
+    $green 0%,
+    $green 50%,
+    darken($green, 1%) 51%,
+    darken($green, 1%) 100%
+  );
+  box-shadow: 0.25em 0.25em 0 rgba(black, 0.125);
+  color: $ltgreen;
+  font-family: "Arial Black", sans-serif;
+  font-size: $fontsize;
+  font-weight: bold;
+  line-height: $billheight - 0.25;
+  text-align: center;
+
+  .inner,
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 1;
+  }
+
+  &:before,
+  &:after {
+    @extend %circle;
+    left: 0;
+  }
+
+  &:before {
+    top: 0;
+  }
+  &:after {
+    bottom: 0;
+  }
+
+  .inner {
+    left: 0;
+    right: 0;
+    top: 0;
+    border: 0.1em solid $ltgreen;
+    bottom: 0;
+
+    &:before,
+    &:after {
+      @extend %circle;
+      right: -0.0875em;
+    }
+
+    &:before {
+      top: -0.0825em;
+    }
+    &:after {
+      bottom: -0.0825em;
+    }
+  }
+} // .bill
+
+.shredder {
+  background-image: linear-gradient($gray 50%, transparent 50%);
+  background-size: 0.33em 0.33em;
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  right: 0;
+  top: 50%;
+  height: $billheight + 1;
+  margin-top: -($billheight + 1) / 2;
+  color: black;
+  font-size: $fontsize;
+
+  .bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0.33em;
+    height: $billheight + 1;
+    background: black;
+  }
+} // .shredder
+
+@keyframes shred {
+  0% {
+    left: -$billwidth;
+    width: 30%;
+  }
+  30% {
+    left: 33%;
+  }
+  60% {
+    left: 40%;
+    transform: scaleX(0.8);
+    width: 30%;
+  }
+  100% {
+    left: $billwidth * 10;
+    margin-left: 0;
+    width: 200%;
+  }
+}

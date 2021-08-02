@@ -8,7 +8,8 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 const Card = ({ product, addProduct, removeProduct }) => {
 
     const [clicked, setCliked] = React.useState(false);
-    const { id, product_name, img, price, product_description, stock } = product;
+    const { product_id, product_name, img, price, product_description, stock_amount } = product;
+
 
     const handleClick = (product) => {
         setCliked(!clicked);
@@ -22,7 +23,7 @@ const Card = ({ product, addProduct, removeProduct }) => {
 
 
     return (
-        <div className="card" key={id}>
+        <div className="card" key={product_id}>
             <div className="wrapper">
                 <div className="container">
                     <div className="top">
@@ -44,7 +45,6 @@ const Card = ({ product, addProduct, removeProduct }) => {
                             </div>
                             <div className="details">
                                 <button className="button_remove">-</button>
-                                <label>1</label>
                                 <button onClick={() => addProduct(product)} className="button_add">+</button>
                             </div>
                             <div onClick={() => handleRemove(product)} className="remove">
@@ -57,7 +57,7 @@ const Card = ({ product, addProduct, removeProduct }) => {
                     {product_description && <div className="icon"><i className="material-icons"><AiOutlineInfoCircle /></i></div>}
                     <div className="contents">
                         <p>{product_description}</p>
-                        <h3>Disponibles:{stock}</h3>
+                        <h3>Disponibles:{stock_amount}</h3>
                     </div>
                 </div>
             </div>

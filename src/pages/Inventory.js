@@ -29,24 +29,30 @@ const Inventory = () => {
 
     if (stock) {
         return (
-            <section>
-                <div className="Inventory">
-                    {stock.map((item) => {
+            <section className="inventory_section">
 
-                        const { product_name, stock } = item;
-                        return (
-                            <div className="Inventory_based">
-                                <h1>{product_name}</h1>
-                                <h2>{stock}</h2>
+                {stock.map((item) => {
+
+                    const { product_name, stock_amount, stock_id, img } = item;
+                    return (
+                        <div className="stock_card" key={stock_id}>
+                            <div className="content">
+                                <div className="front">
+                                    <img src={img} alt={product_name} />
+                                </div>
+                                <div className="back">
+                                    {stock_amount}
+                                </div>
                             </div>
-                        );
-                    })}
-                </div>
+                        </div>
+                    );
+                })}
+
             </section>
         );
     } else {
         return (
-            <section>
+            <section className={"inventory_section"}>
                 <h1>holis </h1>
             </section>
         );

@@ -7,9 +7,9 @@ const Home = ({ data, addProduct, removeProduct }) => {
         return (
             <main>
                 {data.map((product) => {
-                    const { id } = product;
+                    const { product_id } = product;
                     return (
-                        <Card key={id} removeProduct={removeProduct} addProduct={addProduct} product={product} />
+                        <Card key={product_id} removeProduct={removeProduct} addProduct={addProduct} product={product} />
                     );
                 })}
             </main>
