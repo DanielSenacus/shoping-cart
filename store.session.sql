@@ -1,6 +1,3 @@
-CREATE TABLE sales(
-    sale_id INT,
-    cantidad_items INT,
-    Subtotal BIGINT,
-    total BIGINT
-);
+UPDATE stock
+SET stock_amount = 55
+WHERE stock_id = 1;
