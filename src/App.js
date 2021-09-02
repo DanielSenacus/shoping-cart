@@ -34,9 +34,8 @@ function App() {
 
   const [cartItems, setCartItems] = React.useState(getSessionStorage());
 
-  const [sales, setSales] = React.useState([]);
+  const [pages, setPages] = React.useState(1);
 
-  const [pedidos, setPedidos] = React.useState([]);
 
 
   const addProduct = (product) => {
@@ -71,7 +70,7 @@ function App() {
 
   const getApi = async () => {
     const request = new XMLHttpRequest();
-    request.open('get', 'http://localhost:5000/products/2', true);
+    request.open('get', `http://localhost:5000/products?page=${pages}&limit=3`, true);
 
 
     request.onerror = function (err) {
@@ -80,54 +79,19 @@ function App() {
     request.onload = function () {
       if (request.status === 200) {
         const result = JSON.parse(request.responseText);
-        console.log(result);
+        console.log(request.responseText);
         setData(result);
       }
     }
     request.send();
   };
 
-  const getSales = async () => {
-    const request = new XMLHttpRequest();
-    request.open('get', 'http://localhost:5000/bills', true);
-
-
-    request.onerror = function (err) {
-      console.log(err);
-    }
-    request.onload = function () {
-      if (request.status === 200) {
-        const result = JSON.parse(request.responseText);
-        setSales(result);
-      }
-    }
-    request.send();
-  };
-
-  const getPedidos = async () => {
-    const request = new XMLHttpRequest();
-    request.open('get', 'http://localhost:5000/pedidos', true);
-
-
-    request.onerror = function (err) {
-      console.log(err);
-    }
-    request.onload = function () {
-      if (request.status === 200) {
-        const result = JSON.parse(request.responseText);
-        setPedidos(result);
-      }
-    }
-    request.send();
-  };
 
 
 
   React.useEffect(() => {
     getApi();
-    getSales();
-    getPedidos();
-  }, [])
+  }, [pages])
 
   React.useEffect(() => {
     sessionStorage.setItem('cart', JSON.stringify(cartItems));
@@ -147,10 +111,15 @@ function App() {
             <Inventory></Inventory>
           </Route>
           <Route path="/sales">
-            <Sales pedidos={pedidos} sales={sales}></Sales>
+            <Sales></Sales>
           </Route>
         </Switch>
       </Router>
+
+      <div className="res_container">
+        <button onClick={() => setPages(2)} className="more_res">2</button>
+        <button onClick={() => setPages(3)} className="more_res">3</button>
+      </div>
     </>
   );
 }

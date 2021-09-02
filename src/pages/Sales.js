@@ -1,13 +1,58 @@
 import React from 'react'
 import Bill from '../components/Bill';
 
-const Sales = ({ sales, pedidos }) => {
+const Sales = () => {
 
     const [showBill, setShowBill] = React.useState(false)
+    const [sales, setSales] = React.useState([]);
+
+    const [pedidos, setPedidos] = React.useState([]);
+
 
     const showHideBill = () => {
         setShowBill(!showBill)
     };
+
+    const getSales = async () => {
+        const request = new XMLHttpRequest();
+        request.open('get', 'http://localhost:5000/bills', true);
+
+
+        request.onerror = function (err) {
+            console.log(err);
+        }
+        request.onload = function () {
+            if (request.status === 200) {
+                const result = JSON.parse(request.responseText);
+                setSales(result);
+            }
+        }
+        request.send();
+    };
+
+    const getPedidos = async () => {
+        const request = new XMLHttpRequest();
+        request.open('get', 'http://localhost:5000/pedidos', true);
+
+
+        request.onerror = function (err) {
+            console.log(err);
+        }
+        request.onload = function () {
+            if (request.status === 200) {
+                const result = JSON.parse(request.responseText);
+                setPedidos(result);
+            }
+        }
+        request.send();
+    };
+
+    React.useEffect(() => {
+
+        getSales();
+        getPedidos();
+    }, [])
+
 
     console.log(sales);
 
