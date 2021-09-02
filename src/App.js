@@ -102,7 +102,7 @@ function App() {
         <Navbar></Navbar>
         <Switch>
           <Route exact path="/">
-            <Home removeProduct={removeProduct} addProduct={addProduct} data={data}></Home>
+            <Home setPages={setPages} removeProduct={removeProduct} addProduct={addProduct} data={data}></Home>
           </Route>
           <Route path="/cart">
             <Cart cleanCart={cleanCart} removeProduct={removeProduct} addProduct={addProduct} cartItems={cartItems}></Cart>
@@ -116,10 +116,7 @@ function App() {
         </Switch>
       </Router>
 
-      <div className="res_container">
-        <button onClick={() => setPages(2)} className="more_res">2</button>
-        <button onClick={() => setPages(3)} className="more_res">3</button>
-      </div>
+
     </>
   );
 }

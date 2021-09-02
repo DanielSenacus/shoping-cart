@@ -207,7 +207,8 @@ section {
 }
 
 .res_container {
+  position: relative;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
 }
